@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">capd2</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="title">융합캡스톤디자인</string>
+    <string name="wait_status">대기중</string>
+    <string name="run_status">측정중</string>
+    <string name="wait_value">Wait</string>
+    <string name="wait_mic">OFF</string>
+    <string name="run_mic">Listening</string>
+
+    <string name='run_hrate'>심박 측정중</string>
+    <string name='wait_hrate_'>심박 대기중</string>
+
+    <string name="start">수집시작</string>
+    <string name="stop">수집중단</string>
+
+</resources>
