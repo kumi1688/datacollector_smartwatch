@@ -22,11 +22,14 @@ import com.google.firebase.ktx.Firebase
 import java.io.File
 import java.io.IOException
 
+import io.socket.client.IO
+import io.socket.client.Socket
 
 import com.google.firebase.storage.ktx.storage
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
+import java.net.URISyntaxException
 
 
 class MainActivity : Activity(), SensorEventListener {
@@ -62,6 +65,9 @@ class MainActivity : Activity(), SensorEventListener {
         android.Manifest.permission.RECORD_AUDIO
     )
 
+    // 웹소켓
+    private var mSocket: Socket? = null
+
     // Firebase 설정
     private val storage = Firebase.storage
 
@@ -86,7 +92,6 @@ class MainActivity : Activity(), SensorEventListener {
             init()
         }
 
-//        binding.status.text = getString(R.string.wait_status)
         binding.button.setOnClickListener {
             if (isStart) {
                 // 데이터 수집 끝
@@ -94,6 +99,9 @@ class MainActivity : Activity(), SensorEventListener {
                 endAt = System.currentTimeMillis()
                 // 녹음 끝
                 stopRecord()
+
+                // 웹소켓 연결종료
+                mSocket!!.close()
 
                 binding.button.text = getString(R.string.start)
                 binding.button.backgroundTintList = ColorStateList.valueOf(getColor(androidx.wear.R.color.circular_progress_layout_blue))
@@ -125,6 +133,9 @@ class MainActivity : Activity(), SensorEventListener {
 
                 // 녹음시작
                 startRecord()
+
+                // 웹 소켓 연결
+                initSocket();
 
                 accList.clear()
                 hrateList.clear()
@@ -176,6 +187,7 @@ class MainActivity : Activity(), SensorEventListener {
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
     }
 
+    // 가속도 데이터 센서값을 받아들이는 함수
     private fun getAccelerometerData(event: SensorEvent) {
         val tag:String = "Accelerometer"
         val axisX: Float = event.values[0]
@@ -191,15 +203,17 @@ class MainActivity : Activity(), SensorEventListener {
         }
     }
 
+    // 심박수 데이터 센서값을 받아들이는 함수
     private fun getHrateData(event: SensorEvent){
         val tag:String = "Hrate"
         val hrate:Float = event.values[0]
-        Log.d("", hrate.toString())
+//        Log.d("", hrate.toString())
         if(isStart){
             binding.hrate.text = hrate.toString()
 
             val hrateData = HeartRateData(hrateList.size, hrate, System.currentTimeMillis())
             hrateList.add(hrateData)
+            mSocket!!.emit("hrate", hrate.toString())
         }
     }
 
@@ -268,8 +282,16 @@ class MainActivity : Activity(), SensorEventListener {
         }.addOnSuccessListener {
             Log.d("fb", "파이어베이스 전송 성공 ")
         }
+    }
 
-
+    private fun initSocket() {
+        try {
+            mSocket = IO.socket("http://210.107.206.176:3000/watch4")
+            Log.d("SOCKET", "Connection success : ")
+        } catch (e: URISyntaxException) {
+            e.printStackTrace()
+        }
+        mSocket!!.connect()
     }
 
 }
