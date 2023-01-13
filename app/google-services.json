@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "773723898482",
-    "project_id": "watch-db5a7",
-    "storage_bucket": "watch-db5a7.appspot.com"
+    "project_number": "254504420994",
+    "project_id": "capd2-1cf7c",
+    "storage_bucket": "capd2-1cf7c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:773723898482:android:9fb4f9c0b76e33147b38eb",
+        "mobilesdk_app_id": "1:254504420994:android:fca6c83ac78b55f348969b",
         "android_client_info": {
           "package_name": "com.example.capd2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "773723898482-iuv2805vvo81ki41qh68gpahn94g3g4a.apps.googleusercontent.com",
+          "client_id": "254504420994-01io22l6kfgo6i4phtpeoeb9pf1u16jl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC5IFhdZJF-1zD4TJGYVI_fPQrVbGjvRxY"
+          "current_key": "AIzaSyDchwi-YacpfuDvVngnitiXK7_9gf66Q2o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "773723898482-iuv2805vvo81ki41qh68gpahn94g3g4a.apps.googleusercontent.com",
+              "client_id": "254504420994-01io22l6kfgo6i4phtpeoeb9pf1u16jl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

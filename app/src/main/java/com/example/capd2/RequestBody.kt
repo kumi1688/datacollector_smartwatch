@@ -14,14 +14,16 @@ data class HeartRateData (
     var timestamp: Long = 0
 )
 
-data class UploadRequestBody (
+data class UploadBody (
     var acc: List<AccData>,
-    var hrate: List<HeartRateData>,
     var startAt: Long = 0,
     var endAt: Long = 0,
-    var androidVersion: Int = 0,
     var sensorDelayTime: String = "",
     var createDateTime: Long,
     var deviceId: String = "",
     var collectId: Long = 0,
+)
+
+data class UploadResponse (
+    val result: String? = null
 )

@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.capd2"
         minSdk 30
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
     }
@@ -27,7 +27,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'com.google.android.gms:play-services-wearable:17.1.0'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
@@ -43,6 +42,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.0.2')
     implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.squareup.okhttp3:okhttp:3.12.12'
+    implementation 'androidx.health.connect:connect-client:1.0.0-alpha07'
+    implementation 'androidx.health:health-services-client:1.0.0-beta01'
     implementation ('io.socket:socket.io-client:2.0.0') {
         exclude group: 'org.json', module: 'json'
     }
